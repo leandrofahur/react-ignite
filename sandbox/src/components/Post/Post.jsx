@@ -1,17 +1,14 @@
 import { Comment } from "../Comment/Comment";
 import { PaperPlaneTilt } from "phosphor-react";
 import styles from "./Post.module.css";
+import { Avatar } from "../Avatar/Avatar";
 
 export function Post() {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
-            src="https://avatars.githubusercontent.com/u/46628080?v=4"
-            alt="Profile image"
-          />
+          <Avatar src="https://avatars.githubusercontent.com/u/46628080?v=4" />
           <div className={styles.authorInfo}>
             <strong>Leandro Machado</strong>
             <span>Software Engineer</span>
