@@ -124,3 +124,7 @@
 .commentForm button[type="submit"] span {
   margin-left: 0.5rem;
 }
+
+.commentList {
+  margin-top: 2rem;
+}
