@@ -1,3 +1,4 @@
+import { PaperPlaneTilt } from "phosphor-react";
 import styles from "./Post.module.css";
 
 export function Post() {
@@ -35,6 +36,17 @@ export function Post() {
           <a href="#">#nlp</a>
         </p>
       </div>
+
+      <form className={styles.commentForm}>
+        <strong>Leave a comment</strong>
+        <textarea placeholder="What are you thinking?" />
+        <footer>
+          <button type="submit">
+            <PaperPlaneTilt size={20} />
+            <span>Send</span>
+          </button>
+        </footer>
+      </form>
     </article>
   );
 }
