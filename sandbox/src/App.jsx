@@ -5,6 +5,63 @@ import { Post } from "./components/Post/Post";
 import "./global.css";
 import styles from "./App.module.css";
 
+// author: {avatar_url: string, name: string, role: string}
+// publishedAt: Date
+// content: string
+
+const posts = [
+  {
+    id: "1",
+    author: {
+      avatar_url: "https://picsum.photos/200.webp",
+      name: "John Smith",
+      role: "Frontend Engineer",
+    },
+    publishedAt: Date.now(),
+    content: [
+      {
+        type: "paragraph",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      },
+      {
+        type: "paragraph",
+        content:
+          "Debitis cupiditate qui quam voluptates maiores recusandae esse eos repudiandae.",
+      },
+      {
+        type: "paragraph",
+        content:
+          "Unde harum dolorum accusamus aut temporibus repellat inventore ad quidem error tempore.",
+      },
+      {
+        type: "link",
+        content: "https://www.lipsum.com/",
+      },
+    ],
+    publishedAt: Date("2022-12-28 7:21:00 AM"),
+  },
+  {
+    id: "2",
+    author: {
+      avatar_url: "https://avatars.githubusercontent.com/u/46628080?v=4",
+      name: "Leandro Machado",
+      role: "Software Engineer",
+    },
+    publishedAt: Date.now(),
+    content: [
+      {
+        type: "paragraph",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      },
+      {
+        type: "link",
+        content: "https://www.lipsum.com/",
+      },
+    ],
+    publishedAt: Date("2022-12-30 8:11:00 PM"),
+  },
+];
+
 export function App() {
   return (
     <div>
@@ -12,8 +69,13 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post />
-          <Post />
+          {posts.map((post) => (
+            <Post
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          ))}
         </main>
       </div>
     </div>

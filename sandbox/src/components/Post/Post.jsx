@@ -3,15 +3,18 @@ import { PaperPlaneTilt } from "phosphor-react";
 import styles from "./Post.module.css";
 import { Avatar } from "../Avatar/Avatar";
 
-export function Post() {
+export function Post(props) {
+  const { author, content, publishedAt } = props;
+  const { name, role, avatar_url } = author;
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://avatars.githubusercontent.com/u/46628080?v=4" />
+          <Avatar src={avatar_url} />
           <div className={styles.authorInfo}>
-            <strong>Leandro Machado</strong>
-            <span>Software Engineer</span>
+            <strong>{name}</strong>
+            <span>{role}</span>
           </div>
         </div>
         <time title="December 28th, 2022 at 7:21PM" dateTime="2022-12-28">
@@ -19,20 +22,15 @@ export function Post() {
         </time>
       </header>
       <div className={styles.content}>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <p>
-          Recusandae repellat accusantium error, vel placeat pariatur, dolorum
-          molestias illo numquam odio quasi voluptatem unde. Laborum cum dolorum
-          fugit quos?
-        </p>
-        <p>Doloremque, nulla.</p>
-        <p>
-          <a href="#">https://www.lipsum.com/</a>
-        </p>
-        <p>
-          <a href="#">#lorem</a> <a href="#">#ml</a> <a href="#">#ai</a>{" "}
-          <a href="#">#nlp</a>
-        </p>
+        {content.map(({ type, content }) =>
+          type === "paragraph" ? (
+            <p>{content}</p>
+          ) : (
+            <p>
+              <a href="#">{content}</a>
+            </p>
+          )
+        )}
       </div>
 
       <form className={styles.commentForm}>
