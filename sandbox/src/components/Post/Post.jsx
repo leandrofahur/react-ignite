@@ -1,19 +1,21 @@
 import { Comment } from "../Comment/Comment";
+import {
+  getDateFormatted,
+  getNumberOfDaysFromCurrentDate,
+} from "../../utils/dateFormatter";
 import { PaperPlaneTilt } from "phosphor-react";
 import styles from "./Post.module.css";
 import { Avatar } from "../Avatar/Avatar";
+
+// const comments = [{}];
 
 export function Post(props) {
   const { author, content, publishedAt } = props;
   const { name, role, avatar_url } = author;
 
-  const publishedAtFormatted = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(publishedAt);
+  const publishedAtFormatted = getDateFormatted(publishedAt);
+  const publishedAtTimeDifferenceFormatted =
+    getNumberOfDaysFromCurrentDate(publishedAt);
 
   return (
     <article className={styles.post}>
@@ -26,7 +28,7 @@ export function Post(props) {
           </div>
         </div>
         <time title={publishedAtFormatted} dateTime={publishedAtFormatted}>
-          {publishedAtFormatted}
+          {`Publicado há ${publishedAtTimeDifferenceFormatted} dias`}
         </time>
       </header>
       <div className={styles.content}>
