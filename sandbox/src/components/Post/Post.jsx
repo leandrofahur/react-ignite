@@ -7,6 +7,14 @@ export function Post(props) {
   const { author, content, publishedAt } = props;
   const { name, role, avatar_url } = author;
 
+  const publishedAtFormatted = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(publishedAt);
+
   return (
     <article className={styles.post}>
       <header>
@@ -17,8 +25,8 @@ export function Post(props) {
             <span>{role}</span>
           </div>
         </div>
-        <time title="December 28th, 2022 at 7:21PM" dateTime="2022-12-28">
-          Published 1h ago
+        <time title={publishedAtFormatted} dateTime={publishedAtFormatted}>
+          {publishedAtFormatted}
         </time>
       </header>
       <div className={styles.content}>

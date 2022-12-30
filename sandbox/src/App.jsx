@@ -17,7 +17,6 @@ const posts = [
       name: "John Smith",
       role: "Frontend Engineer",
     },
-    publishedAt: Date.now(),
     content: [
       {
         type: "paragraph",
@@ -38,7 +37,7 @@ const posts = [
         content: "https://www.lipsum.com/",
       },
     ],
-    publishedAt: Date("2022-12-28 7:21:00 AM"),
+    publishedAt: new Date("2022-12-28 7:21:00"),
   },
   {
     id: "2",
@@ -47,7 +46,6 @@ const posts = [
       name: "Leandro Machado",
       role: "Software Engineer",
     },
-    publishedAt: Date.now(),
     content: [
       {
         type: "paragraph",
@@ -58,7 +56,7 @@ const posts = [
         content: "https://www.lipsum.com/",
       },
     ],
-    publishedAt: Date("2022-12-30 8:11:00 PM"),
+    publishedAt: new Date("2022-12-30 20:11:00"),
   },
 ];
 
