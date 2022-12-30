@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Comment } from "../Comment/Comment";
 import {
   getDateFormatted,
@@ -31,6 +31,10 @@ export function Post(props) {
     setNewComment(event.target.value);
   };
 
+  const deleteComment = (commentToRemove) => {
+    setComments(comments.filter((comment) => comment !== commentToRemove));
+  };
+
   return (
     <article className={styles.post}>
       <header>
@@ -48,9 +52,9 @@ export function Post(props) {
       <div className={styles.content}>
         {content.map(({ type, content }) =>
           type === "paragraph" ? (
-            <p>{content}</p>
+            <p key={content}>{content}</p>
           ) : (
-            <p>
+            <p key={content}>
               <a href="#">{content}</a>
             </p>
           )
@@ -77,7 +81,11 @@ export function Post(props) {
       </form>
       <div className={styles.commentList}>
         {comments.map((comment) => (
-          <Comment content={comment} />
+          <Comment
+            key={comment}
+            content={comment}
+            onDeleteComment={deleteComment}
+          />
         ))}
       </div>
     </article>

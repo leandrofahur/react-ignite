@@ -7,7 +7,11 @@ import styles from "./Comment.module.css";
 // content: string
 
 export function Comment(props) {
-  const { content } = props;
+  const { content, onDeleteComment } = props;
+
+  const handleDeleteComment = () => {
+    onDeleteComment(content);
+  };
 
   return (
     <div className={styles.comment}>
@@ -24,7 +28,7 @@ export function Comment(props) {
                 Published 1h ago
               </time>
             </div>
-            <button title="Delete comment button">
+            <button title="Delete comment button" onClick={handleDeleteComment}>
               <Trash size={24} />
             </button>
           </header>
