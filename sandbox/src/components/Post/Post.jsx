@@ -1,21 +1,35 @@
+import { useState } from "react";
 import { Comment } from "../Comment/Comment";
 import {
   getDateFormatted,
   getNumberOfDaysFromCurrentDate,
 } from "../../utils/dateFormatter";
+
 import { PaperPlaneTilt } from "phosphor-react";
-import styles from "./Post.module.css";
 import { Avatar } from "../Avatar/Avatar";
 
-// const comments = [{}];
+import styles from "./Post.module.css";
 
 export function Post(props) {
   const { author, content, publishedAt } = props;
   const { name, role, avatar_url } = author;
 
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+
   const publishedAtFormatted = getDateFormatted(publishedAt);
   const publishedAtTimeDifferenceFormatted =
     getNumberOfDaysFromCurrentDate(publishedAt);
+
+  const handleSubmitToCreateNewComment = (event) => {
+    event.preventDefault();
+    setComments([...comments, newComment]);
+    setNewComment("");
+  };
+
+  const handleNewComment = (event) => {
+    setNewComment(event.target.value);
+  };
 
   return (
     <article className={styles.post}>
@@ -27,7 +41,7 @@ export function Post(props) {
             <span>{role}</span>
           </div>
         </div>
-        <time title={publishedAtFormatted} dateTime={publishedAtFormatted}>
+        <time title={publishedAtFormatted} dateTime={publishedAt.toISOString()}>
           {`Publicado há ${publishedAtTimeDifferenceFormatted} dias`}
         </time>
       </header>
@@ -43,9 +57,17 @@ export function Post(props) {
         )}
       </div>
 
-      <form className={styles.commentForm}>
+      <form
+        className={styles.commentForm}
+        onSubmit={handleSubmitToCreateNewComment}
+      >
         <strong>Leave a comment</strong>
-        <textarea placeholder="What are you thinking?" />
+        <textarea
+          name="comment"
+          placeholder="What are you thinking?"
+          value={newComment}
+          onChange={handleNewComment}
+        />
         <footer>
           <button type="submit">
             <PaperPlaneTilt size={20} />
@@ -54,9 +76,9 @@ export function Post(props) {
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => (
+          <Comment content={comment} />
+        ))}
       </div>
     </article>
   );
