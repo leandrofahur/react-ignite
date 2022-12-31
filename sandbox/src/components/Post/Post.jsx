@@ -28,11 +28,19 @@ export function Post(props) {
   };
 
   const handleNewComment = (event) => {
+    event.target.setCustomValidity("");
     setNewComment(event.target.value);
   };
 
   const deleteComment = (commentToRemove) => {
-    setComments(comments.filter((comment) => comment !== commentToRemove));
+    const commentsFilteredByTheDeletedOne = comments.filter(
+      (comment) => comment !== commentToRemove
+    );
+    setComments(commentsFilteredByTheDeletedOne);
+  };
+
+  const handleInvalidNewComment = (event) => {
+    event.target.setCustomValidity("The comment box cannot be empty!");
   };
 
   return (
@@ -71,9 +79,11 @@ export function Post(props) {
           placeholder="What are you thinking?"
           value={newComment}
           onChange={handleNewComment}
+          onInvalid={handleInvalidNewComment}
+          required
         />
         <footer>
-          <button type="submit">
+          <button type="submit" disabled={newComment.length === 0}>
             <PaperPlaneTilt size={20} />
             <span>Send</span>
           </button>
