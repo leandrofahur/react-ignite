@@ -100,7 +100,8 @@
 }
 
 .commentForm button[type="submit"]:disabled {
-  opacity: 0.4;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .commentForm button[type="submit"]:not(:disabled):hover {

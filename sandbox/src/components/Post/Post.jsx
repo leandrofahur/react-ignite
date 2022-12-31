@@ -43,6 +43,8 @@ export function Post(props) {
     event.target.setCustomValidity("The comment box cannot be empty!");
   };
 
+  const isNewCommentEmpty = newComment.length === 0;
+
   return (
     <article className={styles.post}>
       <header>
@@ -83,7 +85,7 @@ export function Post(props) {
           required
         />
         <footer>
-          <button type="submit" disabled={newComment.length === 0}>
+          <button type="submit" disabled={isNewCommentEmpty}>
             <PaperPlaneTilt size={20} />
             <span>Send</span>
           </button>
