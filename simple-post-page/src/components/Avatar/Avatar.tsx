@@ -6,13 +6,12 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export function Avatar(props: AvatarProps) {
-  const { hasBorder = true, src } = props;
+  const { hasBorder = true, ...imgProps } = props;
 
   return (
     <img
       className={hasBorder ? styles.avatar : styles.avatarWithoutBorder}
-      src={src}
-      alt="Profile image"
+      {...imgProps}
     />
   );
 }
