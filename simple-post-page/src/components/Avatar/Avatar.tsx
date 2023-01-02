@@ -1,10 +1,9 @@
+import { ImgHTMLAttributes } from "react";
 import styles from "./Avatar.module.css";
 
-type AvatarProps = {
+interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   hasBorder?: boolean;
-  src: string;
-  alt?: string;
-};
+}
 
 export function Avatar(props: AvatarProps) {
   const { hasBorder = true, src } = props;
