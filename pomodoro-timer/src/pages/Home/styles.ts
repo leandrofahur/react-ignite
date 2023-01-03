@@ -18,6 +18,7 @@ export const HomeContainer = styled.main`
 export const FormContainer = styled.div`
   width: auto;
   display: flex;
+  align-items: center;
   align-content: center;
   justify-content: center;
   gap: 0.5rem;
