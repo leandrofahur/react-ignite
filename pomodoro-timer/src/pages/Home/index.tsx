@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { Play } from 'phosphor-react'
+import { differenceInSeconds } from 'date-fns'
+
 import {
   FormContainer,
   HomeContainer,
@@ -11,7 +14,6 @@ import {
   TaskInput,
   MinuteAmountInput,
 } from './styles'
-import { useState } from 'react'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Please enter a task'),
@@ -29,6 +31,7 @@ interface Cycle {
   id: string
   task: string
   minuteAmount: number
+  startDate: Date
 }
 
 export const Home = () => {
@@ -44,12 +47,43 @@ export const Home = () => {
     },
   })
 
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  useEffect(() => {
+    let intervalId: number = 0
+
+    if (activeCycle) {
+      intervalId = setInterval(
+        () =>
+          setAmountSecondsPast(
+            differenceInSeconds(new Date(), activeCycle.startDate),
+          ),
+        1000,
+      )
+    }
+
+    return () => {
+      clearInterval(intervalId)
+      setAmountSecondsPast(0)
+    }
+  }, [activeCycle])
+
+  const totalSeconds = activeCycle ? activeCycle.minuteAmount * 60 : 0
+  const currentSeconds = activeCycle ? totalSeconds - amountSecondsPast : 0
+
+  const minutesAmount = Math.floor(currentSeconds / 60)
+  const secondsAmount = currentSeconds % 60
+
+  const minutes = String(minutesAmount).padStart(2, '0')
+  const seconds = String(secondsAmount).padStart(2, '0')
+
   function handleCreateNewCycle(data: NewCycleFormData) {
     const id = String(new Date().getTime())
     const newCycle: Cycle = {
       id,
       task: data.task,
       minuteAmount: data.minuteAmount,
+      startDate: new Date(),
     }
 
     setCycles((state) => [...state, newCycle])
@@ -57,17 +91,6 @@ export const Home = () => {
 
     reset()
   }
-
-  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
-  const totalSeconds = activeCycle ? activeCycle.minuteAmount * 60 : 0
-  const currentSeconds = activeCycle ? totalSeconds - amountSecondsPast : 0
-
-  const minutesAmount = Math.floor(totalSeconds / 60)
-  const secondsAmount = totalSeconds % 60
-
-  const minutes = String(minutesAmount).padStart(2, '0')
-  const seconds = String(secondsAmount).padStart(2, '0')
-
   // console.log(activeCycle)
 
   const task = watch('task')
