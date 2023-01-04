@@ -17,10 +17,12 @@ const newCycleFormValidationSchema = zod.object({
   minuteAmount: zod.number().min(5).max(60),
 })
 
-interface NewCycleFormData {
-  task: string
-  minuteAmount: number
-}
+// interface NewCycleFormData {
+//   task: string
+//   minuteAmount: number
+// }
+
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export const Home = () => {
   const { register, handleSubmit, watch, formState } =
