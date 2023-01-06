@@ -14,15 +14,19 @@ export function NewCycleForm() {
       <TaskInput
         id="task"
         list="task-suggestions"
-        placeholder="Please, name your project"
+        placeholder="Please, name your task"
         disabled={!!activeCycle}
         {...register('task')}
       />
 
       <datalist id="task-suggestions">
-        <option value="Please, name your task 1" />
-        <option value="Please, name your task 2" />
-        <option value="Please, name your task 3" />
+        <option value="task 1" />
+        <option value="task 2" />
+        <option value="task 3" />
+        <option value="task 4" />
+        <option value="task 5" />
+        <option value="task 6" />
+        <option value="task 7" />
       </datalist>
 
       <label htmlFor="minutesAmount">durante</label>
