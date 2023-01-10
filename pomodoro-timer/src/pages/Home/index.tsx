@@ -54,12 +54,12 @@ export function Home() {
         {activeCycle ? (
           <StopCountdownButton onClick={interruptCycle} type="button">
             <HandPalm size={24} />
-            Interromper
+            Stop
           </StopCountdownButton>
         ) : (
           <StartCountdownButton disabled={isSubmitDisable} type="submit">
             <Play size={24} />
-            Começar
+            Start
           </StartCountdownButton>
         )}
       </form>
