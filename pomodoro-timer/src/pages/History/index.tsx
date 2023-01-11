@@ -35,7 +35,11 @@ export const History = () => {
                 <tr key={id}>
                   <td>{task}</td>
                   <td>{minutesAmount} minutes</td>
-                  <td>{formatDistanceToNow(startDate, { addSuffix: true })}</td>
+                  <td>
+                    {formatDistanceToNow(new Date(startDate), {
+                      addSuffix: true,
+                    })}
+                  </td>
                   <td>
                     {finishedDate && (
                       <Status statusColor="green">Success</Status>
