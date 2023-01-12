@@ -6,12 +6,11 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyles } from './styles/global'
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyles />
       <App />
+      <GlobalStyles />
     </ThemeProvider>
   </React.StrictMode>,
 )
