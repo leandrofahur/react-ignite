@@ -15,6 +15,14 @@
       "category": "Food",
       "price": 50,
       "createdAt": "2023-01-13T15:55:34.542Z"
+    },
+    {
+      "id": 3,
+      "description": "Bought a house",
+      "type": "outgoing",
+      "category": "Utility",
+      "price": 1500000,
+      "createdAt": "2023-01-14T17:28:25.833Z"
     }
   ]
 }

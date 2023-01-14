@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Header } from "../../components/Header/Header.component";
 import { Summary } from "../../components/Summary/Summary.component";
 import { TransactionsContext } from "../../contexts/Transactions.context";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 import { SearchForm } from "./components/SearchForm.component";
 import { PriceHighlight, TransactionsContainer, TransactionsTable } from "./Transactions.styled";
 
@@ -32,9 +33,14 @@ export function Transactions() {
                 return (
                   <tr key={id}>
                     <td width="50%">{description}</td>
-                    <td><PriceHighlight variant={type}>${price}</PriceHighlight ></td>
+                    <td>
+                      <PriceHighlight variant={type}>
+                        {transaction.type === 'outgoing' ? '- ' : '+ '}
+                        {priceFormatter.format(price)}
+                      </PriceHighlight >
+                    </td>
                     <td>{category}</td>
-                    <td>{createdAt}</td>
+                    <td>{dateFormatter.format(new Date(createdAt))}</td>
                   </tr>)
               }
               )
