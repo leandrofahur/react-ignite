@@ -3,7 +3,7 @@
     {
       "id": 1,
       "description": "Web Development",
-      "type": "Income",
+      "type": "income",
       "category": "Service",
       "price": 14000,
       "createdAt": "2023-01-13T15:55:34.542Z"
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "description": "Skip The Dishes",
-      "type": "Outgoing",
+      "type": "outgoing",
       "category": "Food",
       "price": 50,
       "createdAt": "2023-01-13T15:55:34.542Z"
