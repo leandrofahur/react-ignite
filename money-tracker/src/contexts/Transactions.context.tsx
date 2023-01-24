@@ -11,7 +11,7 @@ interface Transaction {
 
 interface TransactionsContextType {
   transactions: Transaction[];
-  fetchTransactions: () => Promise<void>;
+  fetchTransactions: (query?: string) => Promise<void>;
 }
 
 export const TransactionsContext = createContext<TransactionsContextType>({} as TransactionsContextType);
