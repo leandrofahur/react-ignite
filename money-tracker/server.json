@@ -23,6 +23,22 @@
       "category": "Utility",
       "price": 1500000,
       "createdAt": "2023-01-14T17:28:25.833Z"
+    },
+    {
+      "description": "Coffee",
+      "price": 4,
+      "category": "Food",
+      "type": "income",
+      "createdAt": "2023-01-25T16:33:30.815Z",
+      "id": 4
+    },
+    {
+      "description": "Compss card",
+      "price": 137,
+      "category": "Transit",
+      "type": "outgoing",
+      "createdAt": "2023-01-25T16:37:38.479Z",
+      "id": 5
     }
   ]
 }
