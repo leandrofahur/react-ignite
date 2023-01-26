@@ -1,3 +1,3 @@
 export function useSearchForm() {
-  return null;
+  return null
 }

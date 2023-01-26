@@ -1,19 +1,14 @@
-import { useContext } from "react";
-import { Header } from "../../components/Header/Header.component";
-import { Summary } from "../../components/Summary/Summary.component";
-import { TransactionsContext } from "../../contexts/Transactions.context";
-import { dateFormatter, priceFormatter } from "../../utils/formatter";
-import { SearchForm } from "./components/SearchForm.component";
-import { PriceHighlight, TransactionsContainer, TransactionsTable } from "./Transactions.styled";
-
-interface Transaction {
-  id: number;
-  description: string;
-  type: 'income' | 'outgoing';
-  price: number;
-  category: string;
-  createdAt: string;
-}
+import { useContext } from 'react'
+import { Header } from '../../components/Header/Header.component'
+import { Summary } from '../../components/Summary/Summary.component'
+import { TransactionsContext } from '../../contexts/Transactions.context'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
+import { SearchForm } from './components/SearchForm.component'
+import {
+  PriceHighlight,
+  TransactionsContainer,
+  TransactionsTable,
+} from './Transactions.styled'
 
 export function Transactions() {
   const { transactions } = useContext(TransactionsContext)
@@ -26,25 +21,24 @@ export function Transactions() {
         <SearchForm />
         <TransactionsTable>
           <tbody>
-            {
-              transactions.map(transaction => {
-                const { id, description, price, type, category, createdAt } = transaction;
+            {transactions.map((transaction) => {
+              const { id, description, price, type, category, createdAt } =
+                transaction
 
-                return (
-                  <tr key={id}>
-                    <td width="50%">{description}</td>
-                    <td>
-                      <PriceHighlight variant={type}>
-                        {transaction.type === 'outgoing' ? '- ' : '+ '}
-                        {priceFormatter.format(price)}
-                      </PriceHighlight >
-                    </td>
-                    <td>{category}</td>
-                    <td>{dateFormatter.format(new Date(createdAt))}</td>
-                  </tr>)
-              }
+              return (
+                <tr key={id}>
+                  <td width="50%">{description}</td>
+                  <td>
+                    <PriceHighlight variant={type}>
+                      {transaction.type === 'outgoing' ? '- ' : '+ '}
+                      {priceFormatter.format(price)}
+                    </PriceHighlight>
+                  </td>
+                  <td>{category}</td>
+                  <td>{dateFormatter.format(new Date(createdAt))}</td>
+                </tr>
               )
-            }
+            })}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>

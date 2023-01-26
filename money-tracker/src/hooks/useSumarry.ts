@@ -1,5 +1,5 @@
-import { useContext } from "react"
-import { TransactionsContext } from "../contexts/Transactions.context"
+import { useContext } from 'react'
+import { TransactionsContext } from '../contexts/Transactions.context'
 
 export function useSumary() {
   const { transactions } = useContext(TransactionsContext)
@@ -9,8 +9,7 @@ export function useSumary() {
       if (transaction.type === 'income') {
         acc.income += transaction.price
         acc.total += acc.income
-      }
-      else {
+      } else {
         acc.outgoing += transaction.price
         acc.total -= acc.outgoing
       }
@@ -19,9 +18,9 @@ export function useSumary() {
     {
       income: 0,
       outgoing: 0,
-      total: 0
-    }
+      total: 0,
+    },
   )
 
-  return summary;
+  return summary
 }

@@ -1,7 +1,11 @@
-import * as Dialog from '@radix-ui/react-dialog';
+import * as Dialog from '@radix-ui/react-dialog'
 import Logo from '../../assets/igniteLogo.svg'
-import { NewTransactionModal } from '../NewTransactionModal/NewTransactionModal.component';
-import { HeaderContainer, HeaderContent, NewTransactionButton } from "./Header.styled";
+import { NewTransactionModal } from '../NewTransactionModal/NewTransactionModal.component'
+import {
+  HeaderContainer,
+  HeaderContent,
+  NewTransactionButton,
+} from './Header.styled'
 
 export function Header() {
   return (
@@ -19,4 +23,3 @@ export function Header() {
     </HeaderContainer>
   )
 }
-
